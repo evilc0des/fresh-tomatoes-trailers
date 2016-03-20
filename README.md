@@ -6,7 +6,7 @@
 Follow these easy steps to set up:
 
 - Install [Python 2.7](https://www.python.org/ftp/python/2.7.11/python-2.7.11.msi)
-- Clone the repo: ``
+- Clone the repo: `git clone https://github.com/evilc0des/fresh-tomatoes-trailers.git`
 
 <br>This will get you started in making your own kickass movie trailer viewing website. Follow along:
 ### Add Movies to your catalog
@@ -48,3 +48,13 @@ or from Command line:
 ```
 python entertainment_center.py
 ```
+
+### Changing the Page View
+
+If you want to change the layout and view of the page the whole view code is dynamically rendered from **fresh_tomatoes.py**
+
+You can make your changes from there. 
+
+#### Copyright, Ownership, License etc etc...
+
+This is a project submission for Udacity Full-stack Web Developer Nanodegree. The _**fresh_tomatoes.py**_ is obtained from udacity and minor changes are introduced to the views.
