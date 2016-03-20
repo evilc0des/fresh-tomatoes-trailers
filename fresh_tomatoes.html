@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Fresh Tomatoes!</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 100px;
+            width: 900px;
+            height: 650px;
+
+        }
+
+        .modal-content
+        {
+            background:url("assets/trailer-bg.jpg");
+        }
+
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+
+        }
+        #trailer_info h3,h4{
+
+            margin-top:5px;
+
+        }
+        #trailer_info h5{
+
+            font-family: 'Quicksand', sans-serif;
+
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+
+        .navbar-brand {
+            font-family: 'Pacifico', cursive;
+            font-size:30px;
+            padding-top:5px;
+        }
+
+        .navbar-brand #title {
+             vertical-align : middle;
+        }
+
+        .navbar-brand #sub-title {
+            font-size:15px;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .navbar-brand img{
+            height: 40px;
+            vertical-align : middle;
+        }
+
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id');
+            var movieStoryLine = $(this).attr('data-movie-storyline');
+            var movieName = $(this).find('#movieName').html();
+            var movieDate = $(this).find('#releaseDate').html();
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+            $("#trailer-info-container").html("<div id='trailer_info'><h5>Movie Name</h5><h3>"+movieName+"</h3><br><h5>Release Date</h5><h4>"+movieDate+"</h4><br><h5>Synopsis</h5><h4>"+movieStoryLine+"</h4></div>");
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="row">
+          <div class="scale-media col-sm-8" id="trailer-video-container">
+          </div>
+          <div id="trailer-info-container" class="col-sm-4">
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="assets/tomato-md.png"/> <span id="title">Fresh Tomatoes <span id="sub-title"> Movie Trailers</span></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="FyKWUTwSYAs" data-movie-storyline="A former Special Forces operative turned mercenary with accelerated healing powers." data-toggle="modal" data-target="#trailer">
+    <img src="http://ia.media-imdb.com/images/M/MV5BMjQyODg5Njc4N15BMl5BanBnXkFtZTgwMzExMjE3NzE@._V1_SX640_SY720_.jpg" width="220" height="342">
+    <h2 id="movieName">Deadpool</h2>
+    <h4 id="releaseDate">(2016)</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="eX_iASz1Si8" data-movie-storyline="Fearing the actions of Superman are left unchecked, Batman takes on the man of steel" data-toggle="modal" data-target="#trailer">
+    <img src="http://ia.media-imdb.com/images/M/MV5BNTE5NzU3MTYzOF5BMl5BanBnXkFtZTgwNTM5NjQxODE@._V1_SX640_SY720_.jpg" width="220" height="342">
+    <h2 id="movieName">Batman v Superman: Dawn of Justice</h2>
+    <h4 id="releaseDate">(2016)</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="dKrVegVI0Us" data-movie-storyline="Political interference causes a rift between former allies Captain America and Iron Man." data-toggle="modal" data-target="#trailer">
+    <img src="http://ia.media-imdb.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX640_SY720_.jpg" width="220" height="342">
+    <h2 id="movieName">Captain America: Civil War</h2>
+    <h4 id="releaseDate">(2016)</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="PfBVIHgQbYk" data-movie-storyline="With the emergence of the world's first mutant, Apocalypse, the X-Men unite to defeat his extinction plan." data-toggle="modal" data-target="#trailer">
+    <img src="http://ia.media-imdb.com/images/M/MV5BMjQxMjY5MzU1NV5BMl5BanBnXkFtZTgwNzgyNjY0NzE@._V1__SX640_SY720_.jpg" width="220" height="342">
+    <h2 id="movieName">X-Men: Apocalypse</h2>
+    <h4 id="releaseDate">(2016)</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="HeaugHGd1Kw" data-movie-storyline="The Turtles return to save the city from a dangerous threat." data-toggle="modal" data-target="#trailer">
+    <img src="http://ia.media-imdb.com/images/M/MV5BMjAzODQyNDQxOV5BMl5BanBnXkFtZTgwMjYxMzUwODE@._V1_SX640_SY720_.jpg" width="220" height="342">
+    <h2 id="movieName">Teenage Mutant Ninja Turtles: Out of the Shadows</h2>
+    <h4 id="releaseDate">(2016)</h4>
+</div>
+
+    </div>
+  </body>
+</html>
